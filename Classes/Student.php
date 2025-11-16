@@ -16,11 +16,9 @@ class Student{
 
 
     //function to read all student from the database
-    public function getAllStudent(){
-        return $this->connection->query("SELECT * FROM students");
+    public function getAll(){
+        return $this->connection->query("SELECT * FROM students WHERE isDeleted = 0");
     }
-
-
     //get student by ID
     public function getById($idno){
         return $this->connection->query("SELECT * FROM students WHERE idno = $idno");
@@ -42,7 +40,7 @@ class Student{
 
     //delete student
     public function delete($idno){
-        return $this->connection->query("DELETE FROM students WHERE idno = $idno");
+        return $this->connection->query("UPDATE students SET isDeleted = 1 WHERE idno = $idno");
     }
 }
 
